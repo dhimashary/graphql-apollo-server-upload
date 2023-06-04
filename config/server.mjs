@@ -5,7 +5,7 @@ import express from "express";
 import http from "http";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { typeDefs, resolvers } from "../schema/test.mjs";
+import { typeDefs, resolvers } from "../schema/image.mjs";
 import graphqlUploadExpress from "graphql-upload/graphqlUploadExpress.mjs";
 
 export default async function initServer(port = 4000) {
