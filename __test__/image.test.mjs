@@ -1,55 +1,8 @@
 // import test from "./assets/test.png";
 import 'dotenv/config';
-import { createRequire } from "node:module";
 import initServer from '../config/server.mjs';
 import supertest from 'supertest';
 import { jest } from '@jest/globals';
-
-jest.unstable_mockModule("../helpers/secondary.mjs", () => {
-  return {
-    default: () => false
-  };
-});
-
-jest.unstable_mockModule("axios", () => {
-  return {
-    default: {
-      get: () => {
-        return new Promise(resolve => resolve({ data: 10 }));
-      }
-    }
-  };
-});
-
-let secondary = (await import("../helpers/secondary.mjs")).default;
-let main = (await import("../helpers/main.mjs")).default;
-let exportedIn = (await import("../schema/image.mjs"));
-
-// const exported = await import('../helpers/imageUpload.mjs');
-
-// const require = createRequire(import.meta.url);
-
-// jest.mock('axios');
-// const axios = require('axios');
-
-// axios.get.mockResolvedValue({ "data": "asd" });
-
-// mocking uploadImage example
-// mock still failed
-// jest.mock('imagekit', () => {
-//   return {
-//     upload: () => {
-//       return new Promise((resolve) => resolve({
-//         "fileId": "598821f949c0a938d57563bd",
-//         "name": "file1.jpg",
-//         "url": "https://ik.imagekit.io/your_imagekit_id/images/products/file1.jpg"
-//       }));
-//     }
-//   };
-// });
-
-// const imagekit = require('imagekit');
-// console.log(imagekit, "-=-=-=-=-=-=-=-=-=-=");
 
 const mutation = {
   query: `
@@ -67,17 +20,6 @@ const mutation = {
 describe('e2e demo', () => {
   let server, url;
 
-  // beforeAll(() => {
-  //   jest.mock('../helpers/imageUpload.mjs', () => {
-  //     const imagekit = {
-  //       upload: () => {
-  //         return new Promise(resolve => resolve('test.png'));
-  //       }
-  //     };
-  //     return imagekit;
-  //   });
-  // });
-  // before the tests we spin up a new Apollo Server
   beforeAll(async () => {
 
     // Note we must wrap our object destructuring in parentheses because we already declared these variables

@@ -46,8 +46,8 @@ export const resolvers = {
         //   file: imagesBuffer[0],
         //   fileName: result[0].filename
         // });
-        const response = await main();
-        console.log(response);
+        // const response = await main();
+        // console.log(response);
 
         // console.log(data, "uploaded");
 
