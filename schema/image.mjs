@@ -1,6 +1,7 @@
 import GraphQLUpload from "graphql-upload/GraphQLUpload.mjs";
-import imagekit from '../helpers/imageUpload.mjs';
 import stream2buffer from '../helpers/streamToBuffer.mjs';
+// import axios from 'axios';
+import main from '../helpers/main.mjs';
 
 export const typeDefs = `#graphql
   scalar Upload
@@ -41,12 +42,14 @@ export const resolvers = {
         const imagesBuffer = await Promise.all(imagesBufferPromises);
 
         // sesuaikan upload dengan third party yg dipakai, karena imagekit hanya bisa upload satu file dalam satu waktu maka diambil dari index 0 saja
-        const data = await imagekit.upload({
-          file: imagesBuffer[0],
-          fileName: result[0].filename
-        });
+        // const data = await imagekit.upload({
+        //   file: imagesBuffer[0],
+        //   fileName: result[0].filename
+        // });
+        const response = await main();
+        console.log(response);
 
-        console.log(data, "uploaded");
+        // console.log(data, "uploaded");
 
         // console.log(data);
         // simpan data2 yg dibutuhkan seperti filename, url ke database kalian
